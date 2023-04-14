@@ -1,24 +1,19 @@
 {
-    const rock = 1;
-    const scisours = 2;
-    const paper = 3;
-    let computerMove;
-    let playerMove;
-
     document.getElementById('rock').addEventListener('click', function(){
-        playerMove = 1;
-        startGame();
+        startGame(1);
     });
     document.getElementById('scisours').addEventListener('click', function(){
-        playerMove = 2;
-        startGame();
+        startGame(2);
     });
     document.getElementById('paper').addEventListener('click', function(){
-        playerMove = 3;
-        startGame();
+        startGame(3);
     });
-    const startGame = function(){
-        computerMove = parseInt(randomMove());
+    const startGame = function(playerMove){
+        const rock = 1;
+        const scisours = 2;
+        const paper = 3;
+        let computerMove=parseInt(randomMove());
+
         if(computerMove==playerMove) draw();
         else if((playerMove==rock) && (computerMove==scisours)) winner('player');
         else if((playerMove==rock) && (computerMove==paper)) winner('computer');
@@ -48,12 +43,5 @@
 
     const clearMessages = function(){
         document.getElementById('messages').innerHTML = '';
-    }
-
-    const wrongNumber = function(){
-        computerMove = parseInt(randomMove());
-        playerMove = parseInt(prompt('Niwełaściwy numer wprowadź właściwy - 1: kamień, 2: papier, 3: nożyce.'));
-        clearMessages();
-        startGame(); 
     }
 }
