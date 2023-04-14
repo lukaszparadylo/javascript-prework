@@ -1,12 +1,23 @@
-rock = 1;
-scisours = 2;
-paper = 3;
-let computerMove = parseInt(randomMove());
-let playerMove = parseInt(prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.'));
+const rock = 1;
+const scisours = 2;
+const paper = 3;
+let computerMove;
+let playerMove;
 
-startGame();
+document.getElementById('rock').addEventListener('click', function(){
+    playerMove = 1;
+    startGame();
+});
+document.getElementById('scisours').addEventListener('click', function(){
+    playerMove = 2;
+    startGame();
+});
+document.getElementById('paper').addEventListener('click', function(){
+    playerMove = 3;
+    startGame();
+});
 function startGame(){
-    if((playerMove>3) || (playerMove<1)) wrongNumber();
+    computerMove = parseInt(randomMove());
     if(computerMove==playerMove) draw();
     else if((playerMove==rock) && (computerMove==scisours)) winner('player');
     else if((playerMove==rock) && (computerMove==paper)) winner('computer');
@@ -17,10 +28,7 @@ function startGame(){
 }
 
 function draw(){
-    computerMove = parseInt(randomMove());
-    playerMove = parseInt(prompt('Remis spróbuj ponownie - 1: kamień, 2: papier, 3: nożyce.'));
-    clearMessages();
-    startGame();
+    printMessage('Remis, sprobuj ponownie');
 }
 
 function winner(winner){
