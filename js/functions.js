@@ -6,6 +6,7 @@ let playerMove = parseInt(prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: 
 
 startGame();
 function startGame(){
+    if((playerMove>3) || (playerMove<1)) wrongNumber();
     if(computerMove==playerMove) draw();
     else if((playerMove==rock) && (computerMove==scisours)) winner('player');
     else if((playerMove==rock) && (computerMove==paper)) winner('computer');
@@ -38,4 +39,11 @@ function printMessage(msg){
 
 function clearMessages(){
 	document.getElementById('messages').innerHTML = '';
+}
+
+function wrongNumber(){
+    computerMove = parseInt(randomMove());
+    playerMove = parseInt(prompt('Niwełaściwy numer wprowadź właściwy - 1: kamień, 2: papier, 3: nożyce.'));
+    clearMessages();
+    startGame(); 
 }
