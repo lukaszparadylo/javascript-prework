@@ -1,8 +1,34 @@
-let computerMove = `kamień`;
-let playerMove = 'papier';
+rock = 1;
+scisours = 2;
+paper = 3;
+let computerMove = parseInt(randomMove());
+let playerMove = parseInt(prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.'));
 
-printMessage('Zagrałem ' + computerMove + '! Jeśli Twój ruch to papier, to wygrywasz!');
-printMessage('Zagrałem ' + playerMove + '! Jeśli Twój ruch to nożyce, to wygrywasz!');
+startGame();
+function startGame(){
+    if(computerMove==playerMove) draw();
+    else if((playerMove==rock) && (computerMove==scisours)) winner('player');
+    else if((playerMove==rock) && (computerMove==paper)) winner('computer');
+    else if((playerMove==scisours) && (computerMove==paper)) winner('player');
+    else if((playerMove==scisours) && (computerMove==rock)) winner('computer');
+    else if((playerMove==paper) && (computerMove==rock)) winner('player');
+    else if((playerMove==paper) && (computerMove==scisours)) winner('computer');
+}
+
+function draw(){
+    computerMove = parseInt(randomMove());
+    playerMove = parseInt(prompt('Remis sprubój ponownie - 1: kamień, 2: papier, 3: nożyce.'));
+    clearMessages();
+    startGame();
+}
+
+function winner(winner){
+    printMessage('The winner is: '+winner);
+}
+
+function randomMove(){
+    return Math.floor(Math.random() * 3 + 1);
+}
 
 function printMessage(msg){
 	let div = document.createElement('div');
