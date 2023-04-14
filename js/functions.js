@@ -18,7 +18,7 @@ function startGame(){
 
 function draw(){
     computerMove = parseInt(randomMove());
-    playerMove = parseInt(prompt('Remis sprubój ponownie - 1: kamień, 2: papier, 3: nożyce.'));
+    playerMove = parseInt(prompt('Remis spróbuj ponownie - 1: kamień, 2: papier, 3: nożyce.'));
     clearMessages();
     startGame();
 }
